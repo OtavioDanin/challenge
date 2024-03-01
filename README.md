@@ -109,3 +109,6 @@ POST /tranfer/create - Registar uma nova transação entre utilizadores(user_typ
   "value": "10"
 }
 ```
+
+## Proposta de melhorias
+-  Delegar a um serviço externo de fila de mensageria o envio das notificações
