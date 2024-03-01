@@ -1,6 +1,6 @@
 # Challange BACKEND PHP
 
-Este projeto é uma API Rest construída com **PHP, Hyperf Framework, PostgreSQL as the database.** 
+Este projeto é uma API Rest construída com **PHP, Hyperf Framework, PostgreSQL como o Banco de Dados.** 
 ### Pré-requisitos
 
 * Docker
