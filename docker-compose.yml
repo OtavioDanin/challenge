@@ -1,0 +1,48 @@
+version: '3'
+
+networks:
+  challenge-network:
+    external: true
+
+services:
+  challenge:
+    container_name: challenge
+    image: challenge
+    build:
+      context: .
+    volumes:
+      - ./:/opt/www
+    ports:
+      - 9501:9501
+    environment:
+      - APP_ENV=dev
+      - SCAN_CACHEABLE=false
+    depends_on:
+      - postgres
+    networks:
+      - challenge-network
+  postgres:
+    container_name: postgres
+    image: postgres:15
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+      #POSTGRES_DB: localstack
+    ports:
+      - 5432:5432
+    networks:
+      - challenge-network
+  pgadmin:
+    container_name: pgadmin4
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: secret
+    ports:
+      - 5050:80
+      - 5051:443
+    networks:
+      - challenge-network
+    depends_on:
+      - postgres
+
