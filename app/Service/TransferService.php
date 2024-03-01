@@ -9,6 +9,7 @@ use App\Http\HttpClient;
 use App\Http\HttpClientInterface;
 use Ramsey\Uuid\Uuid;
 use Exception;
+use Throwable;
 
 class TransferService
 {
@@ -69,13 +70,32 @@ class TransferService
 
         $newBalanceReceiver = $userReceiver['balance'] + $value;
         $isUpdateReceiver = $this->makeUpdateBalance($receiverId, $newBalanceReceiver);
-
+        $this->notifica($receiverId, $newBalanceReceiver);
         return ($isUpdateSender && $isUpdateReceiver) ? ['message' => 'Transferencia realizada com sucesso', 'data' => $value] : ['message' => 'Falha na realização da Transferencia', 'data' => []];
+    }
+
+    private function notifica(string $receiverId, float $balance)
+    {
+        $endPointNotificação = 'https://run.mocky.io/v3/5794d450-d2e2-4412-8131-73d0293ac1cc';
+        try{
+            $user = $this->walletRepository->findUserType($receiverId);
+            $opstionRequest = [
+                'headers' => [
+                    'application/json'
+                ],
+                'auth' => ['user', 'pass'],
+                'json' => ['user_identifier' => $user['email'], 'balance' => $balance]
+            ];
+            return $this->httpClient->sendPost($endPointNotificação, $opstionRequest);
+        } catch(Throwable $th){
+            return false;
+        }
     }
 
     private function authorizeTransaction(): void
     {
-        $responseAuthorize = $this->httpClient->sendGet('https://run.mocky.io/v3/5794d450-d2e2-4412-8131-73d0293ac1cc');
+        $endPointAutorizacao = 'https://run.mocky.io/v3/5794d450-d2e2-4412-8131-73d0293ac1cc';
+        $responseAuthorize = $this->httpClient->sendGet($endPointAutorizacao);
         if ($responseAuthorize->statusCode !== 200) {
             throw new Exception('Falha no Serviço Autorizador');
         }
