@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "1c4f1dbc-0839-4cd3-8d20-c5c0ad798aac",
+		"name": "challenge-payment-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Jonas\",\n    \"identifier\": \"01002876036\",\n    \"email\": \"jonas@email.com\",\n    \"password\": \"123456\",\n    \"user_type\": \"MERCHANT\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/user/create",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transference",
+			"item": [
+				{
+					"name": "Create Transfer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n  \"senderId\": \"018df6d7-3080-718b-a06a-08d880903075\",\n  \"receiverId\": \"018ded7d-0282-70f5-9c49-297b47b865e1\",\n  \"value\": \"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/tranfer/create",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"tranfer",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Balance",
+			"item": [
+				{
+					"name": "Create Balance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": \"018df6d7-3080-718b-a06a-08d880903075\",\n    \"value\" : \"10\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://{{url}}/wallet/create",
+							"protocol": "http",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"wallet",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
