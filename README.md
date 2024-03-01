@@ -1,7 +1,4 @@
 # Challange BACKEND PHP
-![PHP](https://www.php.net/images/logos/new-php-logo.png)
-![Hyperf Framework](https://hyperf.wiki/3.1/logo.png)
-[![Licence]()](./LICENSE)
 
 Este projeto é uma API Rest construída com **PHP, Hyperf Framework, PostgreSQL as the database.** 
 ### Pré-requisitos
