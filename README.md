@@ -82,6 +82,7 @@ Desafio propoe em criar um mini sistema de transfêrencias montária entre dois 
 
 ```
 ## Endpoints
+Na raiz da aplicação encontra-se o a collection da alicação, como o nome de challenge-payment-api.postman_collection.json
 A API fronece os seguintes endpoints:
 
 **POST USUARIO**
