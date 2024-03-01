@@ -81,37 +81,8 @@ Desafio propoe em criar um mini sistema de transfêrencias montária entre dois 
 | receiver    | UUID          | FK (transfers.id)
 
 ```
-## API Endpoints
+## Endpoints
 The API provides the following endpoints:
-
-**GET USERS**
-```markdown
-GET /users - Retrieve a list of all users.
-```
-```json
-[
-    {
-        "id": 1,
-        "firstName": "Pedro",
-        "lastName": "Silva",
-        "document": "123456787",
-        "email": "pedro@example.com",
-        "password": "senha",
-        "balance": 20.00,
-        "userType": "MERCHANT"
-    },
-    {
-        "id": 4,
-        "firstName": "Luckas",
-        "lastName": "Silva",
-        "document": "123456783",
-        "email": "luckas@example.com",
-        "password": "senha",
-        "balance": 0.00,
-        "userType": "COMMON"
-    }
-]
-```
 
 **POST USERS**
 ```markdown
