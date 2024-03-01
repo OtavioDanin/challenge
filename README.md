@@ -84,7 +84,7 @@ Desafio propoe em criar um mini sistema de transfêrencias montária entre dois 
 ## Endpoints
 A API fronece os seguintes endpoints:
 
-**POST USERS**
+**POST USUARIO**
 ```markdown
 POST /user/create - Registar um novo usuário na aplicação
 ```
@@ -97,7 +97,7 @@ POST /user/create - Registar um novo usuário na aplicação
     "user_type": "COMMON"
 }
 ```
-**POST TRANSACTIONS**
+**POST TRANSFERENCIA**
 ```markdown
 POST /tranfer/create - Registar uma nova transação entre utilizadores(user_type: COMMON ou MERCHANT)
 ```
