@@ -19,3 +19,86 @@ $ docker compose up -d
 $ docker exec challenge composer install
 
 Após isso a aplicação está disponível em [http://localhost:9501](http://localhost:9501)
+
+
+## No que o desafio consiste
+
+Desafio propoe em criar um mini sistema de transfêrencias montária entre dois usuários.
+
+## Requisitos definidos
+
+- Para ambos tipos de usuário, precisamos do Nome Completo, CPF, e-mail e Senha. CPF/CNPJ e e-mails devem ser únicos no sistema.
+
+* Usuários podem enviar dinheiro (efetuar transferência) para lojistas e entre usuários.
+
+- Lojistas só recebem transferências, não enviam dinheiro para ninguém.
+
+* Validar se o usuário tem saldo antes da transferência.
+
+- Validar o serviço autorizador externo.
+
+* Em casso de erro tudo deve ser revertido, ou seja, o dinheiro voltar para a conta de origem.
+
+- Ao finalizar trânferencia o lojista ou usuário deve receber uma notificação.
+
+## Modelagem de dados
+
+```markdown
+# Tabela: users
+
+| Coluna      | Tipo          | Constraint
+|-------------|---------------|-------------
+| id          | UUID          | PK
+| name        | VARCHAR       |
+| identity_document  | VARCHAR       | UNIQUE
+| email       | VARCHAR       | UNIQUE
+| password    | VARCHAR       |
+| user_type   | VARCHAR       |
+
+# Tabela: wallets
+
+| Coluna      | Tipo          | Constraint
+|-------------|---------------|----------
+| id          | UUID          | PK      
+| user_id     | UUID          | FK (users.id)  
+| balance     | DOUBLE        |
+
+# Tabela: transfers
+
+| Coluna         | Tipo          | Constraint
+|----------------|---------------|----------
+| id             | UUID          | PK      
+| wallet_id      | UUID          | FK (wallets.id)
+| type           | UUID          | 
+| value          | integer       | 
+
+# Tabela: transactions
+
+| Coluna      | Tipo          | Constraint
+|-------------|---------------|----------
+| id          | UUID          | PK      
+| sender      | UUID          | FK (transfers.id)
+| receiver    | UUID          | FK (transfers.id)
+
+## API Endpoints
+The API provides the following endpoints:
+
+**GET USERS**
+```markdown
+
+**POST USERS**
+```markdown
+POST /users - Register a new user into the App
+```
+```json
+{
+    "firstName": "Lucas",
+    "lastName": "Silva",
+    "password": "senha",
+    "document": "123456783",
+    "email": "lucas@example.com",
+    "userType": "COMMON",
+    "balance": 10
+}
+```
+
