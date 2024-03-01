@@ -82,21 +82,30 @@ Desafio propoe em criar um mini sistema de transfêrencias montária entre dois 
 
 ```
 ## Endpoints
-The API provides the following endpoints:
+A API fronece os seguintes endpoints:
 
 **POST USERS**
 ```markdown
-POST /users - Register a new user into the App
+POST /user/create - Registar um novo usuário na aplicação
 ```
 ```json
 {
-    "firstName": "Lucas",
-    "lastName": "Silva",
-    "password": "senha",
-    "document": "123456783",
-    "email": "lucas@example.com",
-    "userType": "COMMON",
-    "balance": 10
+    "name": "Luiz",
+    "identifier": "85027263074",
+    "email": "luiz@email.com",
+    "password": "123456",
+    "user_type": "COMMON"
 }
 ```
+**POST TRANSACTIONS**
+```markdown
+POST /tranfer/create - Registar uma nova transação entre utilizadores(user_type: COMMON ou MERCHANT)
+```
 
+```json
+{
+  "senderId": "018df6d7-3080-718b-a06a-08d880903075",
+  "receiverId": "018ded7d-0282-70f5-9c49-297b47b865e1",
+  "value": "10"
+}
+```
